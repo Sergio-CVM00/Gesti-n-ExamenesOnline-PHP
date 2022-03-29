@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-03-2022 a las 13:00:46
+-- Tiempo de generación: 29-03-2022 a las 14:08:15
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -37,12 +37,34 @@ CREATE TABLE `asignatura` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `asignatura-alumno`
+--
+
+CREATE TABLE `asignatura-alumno` (
+  `ID_asignatura` int(11) NOT NULL,
+  `ID_estudiante` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `estudiante`
 --
 
 CREATE TABLE `estudiante` (
   `ID_estudiante` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estudiante-pregunta`
+--
+
+CREATE TABLE `estudiante-pregunta` (
+  `ID_estudiante` int(11) NOT NULL,
+  `ID_pregunta` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -83,6 +105,17 @@ CREATE TABLE `profesor` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `profesor-asignatura`
+--
+
+CREATE TABLE `profesor-asignatura` (
+  `ID_asignatura` int(11) NOT NULL,
+  `ID_profesor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tema`
 --
 
@@ -106,10 +139,24 @@ ALTER TABLE `asignatura`
   ADD KEY `ID_coordinador_2` (`ID_coordinador`);
 
 --
+-- Indices de la tabla `asignatura-alumno`
+--
+ALTER TABLE `asignatura-alumno`
+  ADD KEY `fk_asignatura` (`ID_asignatura`),
+  ADD KEY `fk_estudiante` (`ID_estudiante`);
+
+--
 -- Indices de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
   ADD PRIMARY KEY (`ID_estudiante`);
+
+--
+-- Indices de la tabla `estudiante-pregunta`
+--
+ALTER TABLE `estudiante-pregunta`
+  ADD KEY `ID_estudiante` (`ID_estudiante`),
+  ADD KEY `ID_pregunta` (`ID_pregunta`);
 
 --
 -- Indices de la tabla `grado`
@@ -129,6 +176,13 @@ ALTER TABLE `preguntas`
 --
 ALTER TABLE `profesor`
   ADD PRIMARY KEY (`ID_profesor`);
+
+--
+-- Indices de la tabla `profesor-asignatura`
+--
+ALTER TABLE `profesor-asignatura`
+  ADD KEY `impartir` (`ID_asignatura`,`ID_profesor`),
+  ADD KEY `ID_profesor` (`ID_profesor`);
 
 --
 -- Indices de la tabla `tema`
@@ -182,10 +236,31 @@ ALTER TABLE `asignatura`
   ADD CONSTRAINT `asignatura_ibfk_1` FOREIGN KEY (`ID_grado`) REFERENCES `grado` (`ID_grado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `asignatura-alumno`
+--
+ALTER TABLE `asignatura-alumno`
+  ADD CONSTRAINT `r-alumno` FOREIGN KEY (`ID_estudiante`) REFERENCES `estudiante` (`ID_estudiante`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `r-asignatura` FOREIGN KEY (`ID_asignatura`) REFERENCES `asignatura` (`ID_asignatura`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `estudiante-pregunta`
+--
+ALTER TABLE `estudiante-pregunta`
+  ADD CONSTRAINT `estudiante-pregunta_ibfk_1` FOREIGN KEY (`ID_estudiante`) REFERENCES `estudiante` (`ID_estudiante`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `estudiante-pregunta_ibfk_2` FOREIGN KEY (`ID_pregunta`) REFERENCES `preguntas` (`ID_pregunta`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
   ADD CONSTRAINT `preguntas_ibfk_1` FOREIGN KEY (`ID_tema`) REFERENCES `tema` (`ID_tema`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `profesor-asignatura`
+--
+ALTER TABLE `profesor-asignatura`
+  ADD CONSTRAINT `profesor-asignatura_ibfk_1` FOREIGN KEY (`ID_profesor`) REFERENCES `profesor` (`ID_profesor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `profesor-asignatura_ibfk_2` FOREIGN KEY (`ID_asignatura`) REFERENCES `asignatura` (`ID_asignatura`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tema`
