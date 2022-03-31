@@ -5,6 +5,7 @@
     *Lineas 51, 54 (Sentencias SQL):    modificar si los requisitos de validacion cambian
     *Lineas 67, 78 (Validacion):        modificar si los requisitos de validacion cambian
     *Lineas 70 y 81 (Redireccion):      ficheros en el directorio
+    *Añadir validacion para administradores
 
 -> indexEst e indexPro
     *Paginas principales de los usuarios dependiendo si eres Estudiante o Profesor
