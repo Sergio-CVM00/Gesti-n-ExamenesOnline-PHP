@@ -43,12 +43,12 @@
             </div>
 
             <div class="form-group">
-                <p>Indice previo: <?php echo $indice; ?></p>
+                <p>Pregunta previa: <?php echo $indice; ?></p>
                 <input name="indice" type="text" class="form-control" value="<?php echo $indice; ?>" placeholder="Actualizar enunciado">
             </div>
 
             <div class="form-group">
-                <p>Pregunta previa: <?php echo $pregunta;?></p>
+                <p>Enunciado previo: <?php echo $pregunta;?></p>
                 <textarea name="pregunta" class="form-control" cols="30" rows="10"><?php echo $pregunta;?></textarea>
             </div>
 
