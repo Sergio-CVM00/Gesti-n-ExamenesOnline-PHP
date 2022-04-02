@@ -13,7 +13,10 @@
         if(!$result){
             die("query failed");
         }
-        echo 'saved';
+
+        $_SESSION['message'] = 'Pregunta guardada correctamente';
+        $_SESSION['message_type'] = 'success';
+        header("Location: index.php");
     }
 
 ?>

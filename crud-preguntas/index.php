@@ -1,5 +1,16 @@
 <?php include("db.php")?>
 <?php include("includes/header.php")?>
+<main class="container p-4">
+
+    <!-- MESSAGES -->
+    <?php if (isset($_SESSION['message'])) { ?>
+        <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
+            <?= $_SESSION['message']?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php session_unset(); } ?> <!-- limpiar los datos una vez refresco -->
 
    <div class="container p-4">
         <div class="row">
@@ -8,14 +19,16 @@
                     <form action="save_task.php" method="POST"> 
 
                         <div class="form-group">
+                            <input type="text" name="tema" class="form-control"
+                            placeholder= "Nº Tema" autofocus>
+                        </div>
+
+                        <div class="form-group">
                             <input type="text" name="indice" class="form-control"
                             placeholder= "Nº pregunta" autofocus>
                         </div>
 
-                        <div class="form-group">
-                            <input type="text" name="tema" class="form-control"
-                            placeholder= "Tema al que pertenece" autofocus>
-                        </div>
+                        
 
                         <div class="form-group">
                             <label for="exampleFormControlTextarea1"></label>
@@ -40,16 +53,42 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Nº</th>
                         <th>Tema</th>
                         <th>Pregunta</th>
-                        <th>Creado en</th>
-                        <th>Accion</th>
+                        <th>Enunciado</th>
+                        <th>Solucion</th>
+                        <th>Fecha</th>
+                        <th>Opciones</th>
                     </tr>
                     </thead>
+                    <tbody>
+                        <?php
+                        $query = "SELECT * FROM `preguntas`";
+                        $result_preguntas = mysqli_query($conn, $query);
+
+                        while($row = mysqli_fetch_assoc($result_preguntas)) { ?>
+                            <tr>
+                              <td><?php echo $row['ID_tema']; ?></td>
+                              <td><?php echo $row['ID_pregunta']; ?></td>
+                              <td><?php echo $row['pregunta']; ?></td>
+                              <td><?php echo $row['solucion']; ?></td>
+                              <td><?php echo $row['fecha_creacion']; ?></td>
+                              <td>
+                                <a href="edit.php?id=<?php echo $row['ID_pregunta']?>" class="btn btn-secondary">
+                                    <i class="fas fa-marker"></i>
+                                </a>
+                                <a href="delete_task.php?id=<?php echo $row['ID_pregunta']?>" class="btn btn-danger">
+                                    <i class="far fa-trash-alt"></i>
+                                </a>
+                              </td>
+                            </tr>
+                            <?php } ?>
+                        
+                    </tbody>
                 </table>
-            </div>            
+            </div> 
+
         </div>
    </div>
-
+</main>
 <?php include ("includes/footer.php")?>
