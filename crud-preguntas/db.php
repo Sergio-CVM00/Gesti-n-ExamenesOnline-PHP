@@ -5,8 +5,4 @@
         '',
         'gestion-examenes'
     );
-
-    if(isset($conn)){
-        echo 'DB is connected';
-    }
 ?>

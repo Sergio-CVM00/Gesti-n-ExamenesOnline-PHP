@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-04-2022 a las 14:22:52
+-- Tiempo de generación: 02-04-2022 a las 16:52:35
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -46,6 +46,13 @@ CREATE TABLE `asignatura` (
   `ID_grado` int(11) DEFAULT NULL,
   `ID_coordinador` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `asignatura`
+--
+
+INSERT INTO `asignatura` (`ID_asignatura`, `nombre`, `ID_grado`, `ID_coordinador`) VALUES
+(1, 'matemáticas', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -104,6 +111,13 @@ CREATE TABLE `grado` (
   `GRADO_NOMBRE` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `grado`
+--
+
+INSERT INTO `grado` (`ID_grado`, `GRADO_NOMBRE`) VALUES
+(1, 'grado prueba');
+
 -- --------------------------------------------------------
 
 --
@@ -114,7 +128,7 @@ CREATE TABLE `preguntas` (
   `ID_pregunta` int(11) NOT NULL,
   `ID_tema` int(11) NOT NULL,
   `pregunta` text NOT NULL,
-  `solucion` tinyint(1) NOT NULL,
+  `solucion` varchar(9) NOT NULL,
   `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -151,6 +165,13 @@ CREATE TABLE `tema` (
   `nombre` varchar(50) NOT NULL,
   `ID_asignatura` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tema`
+--
+
+INSERT INTO `tema` (`ID_tema`, `nombre`, `ID_asignatura`) VALUES
+(1, 'derivadas', 1);
 
 --
 -- Índices para tablas volcadas
@@ -239,7 +260,7 @@ ALTER TABLE `tema`
 -- AUTO_INCREMENT de la tabla `asignatura`
 --
 ALTER TABLE `asignatura`
-  MODIFY `ID_asignatura` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_asignatura` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `estudiante`
@@ -257,7 +278,7 @@ ALTER TABLE `examen`
 -- AUTO_INCREMENT de la tabla `grado`
 --
 ALTER TABLE `grado`
-  MODIFY `ID_grado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_grado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `profesor`
@@ -269,7 +290,7 @@ ALTER TABLE `profesor`
 -- AUTO_INCREMENT de la tabla `tema`
 --
 ALTER TABLE `tema`
-  MODIFY `ID_tema` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_tema` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
@@ -305,7 +326,7 @@ ALTER TABLE `examen`
 -- Filtros para la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  ADD CONSTRAINT `preguntas_ibfk_1` FOREIGN KEY (`ID_tema`) REFERENCES `tema` (`ID_tema`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `preguntas_ibfk_1` FOREIGN KEY (`ID_tema`) REFERENCES `tema` (`ID_tema`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `profesor-asignatura`
