@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-04-2022 a las 14:57:27
+-- Tiempo de generación: 03-04-2022 a las 20:18:53
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -123,7 +123,8 @@ CREATE TABLE `estudiante_examen` (
 INSERT INTO `estudiante_examen` (`ID_examen`, `ID_estudiante`, `Nota`) VALUES
 (31, 1, 10.00),
 (31, 3, 9.00),
-(35, 3, 0.00);
+(35, 3, 0.00),
+(36, 3, 10.00);
 
 -- --------------------------------------------------------
 
@@ -156,7 +157,8 @@ INSERT INTO `estudiante_pregunta` (`ID_estudiante`, `ID_pregunta`, `respuesta_al
 (1, 2, 'Verdadero', 1),
 (1, 3, 'Verdadero', 1),
 (3, 4, 'Verdadero', 0),
-(3, 2, 'Verdadero', 1);
+(3, 2, 'Verdadero', 1),
+(3, 7, 'Verdadero', 1);
 
 -- --------------------------------------------------------
 
@@ -180,7 +182,9 @@ INSERT INTO `examen` (`ID_examen`, `ID_tema`, `num_preguntas`, `fecha`) VALUES
 (32, 2, 2, '2022-04-03'),
 (33, 2, 2, '2022-04-03'),
 (34, 2, 1, '2022-04-02'),
-(35, 1, 2, '2022-04-03');
+(35, 1, 2, '2022-04-03'),
+(36, 5, 1, '2022-04-03'),
+(37, 5, 2, '2022-04-03');
 
 -- --------------------------------------------------------
 
@@ -220,11 +224,8 @@ CREATE TABLE `preguntas` (
 --
 
 INSERT INTO `preguntas` (`ID_pregunta`, `ID_tema`, `pregunta`, `solucion`, `fecha_creacion`) VALUES
-(1, 1, 'derivame esta', 'verdadero', '2022-04-03 12:13:18'),
-(2, 1, 'intregales no', 'falso', '2022-04-03 12:13:44'),
-(2, 2, 'Las marcas de inserción del código PHP en las páginas HTML son < ? y ? >', 'Verdadero', '2022-04-02 15:52:11'),
-(3, 2, 'En el atributo action especificamos la página a la que se van a enviar los datos', 'Verdadero', '2022-04-02 15:53:05'),
-(4, 2, 'La forma de pasar los parámetros entre páginas PHP son Into e Include', 'Falso', '2022-04-02 15:54:54');
+(7, 5, 'primera', 'Verdadero', '2022-04-03 18:13:53'),
+(8, 5, 'segunda', 'Verdadero', '2022-04-03 18:14:00');
 
 -- --------------------------------------------------------
 
@@ -288,7 +289,8 @@ INSERT INTO `tema` (`ID_tema`, `nombre`, `ID_asignatura`) VALUES
 (1, 'derivadas', 1),
 (2, 'PHP', 2),
 (3, 'Framework', 2),
-(4, 'Javascript', 2);
+(4, 'Javascript', 2),
+(5, 'funciones redondas', 1);
 
 --
 -- Índices para tablas volcadas
@@ -354,6 +356,7 @@ ALTER TABLE `grado`
 --
 ALTER TABLE `preguntas`
   ADD PRIMARY KEY (`ID_pregunta`,`ID_tema`) USING BTREE,
+  ADD UNIQUE KEY `ID_pregunta` (`ID_pregunta`),
   ADD KEY `ID_tema` (`ID_tema`);
 
 --
@@ -390,13 +393,13 @@ ALTER TABLE `asignatura`
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
-  MODIFY `ID_estudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_estudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `examen`
 --
 ALTER TABLE `examen`
-  MODIFY `ID_examen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ID_examen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `grado`
@@ -405,16 +408,22 @@ ALTER TABLE `grado`
   MODIFY `ID_grado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `preguntas`
+--
+ALTER TABLE `preguntas`
+  MODIFY `ID_pregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT de la tabla `profesor`
 --
 ALTER TABLE `profesor`
-  MODIFY `ID_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID_profesor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `tema`
 --
 ALTER TABLE `tema`
-  MODIFY `ID_tema` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_tema` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
