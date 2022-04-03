@@ -17,26 +17,24 @@
 
 	//Formulario:
 	echo "<form action=ver_resultados_profesores.php method=POST>";
-		echo "<p>Tema:";
+		echo "Tema:";
+		echo "<br>";
 		echo "<select name=Tema>"; 
-			echo "<option value= disabled selected>";
-				echo "Elija un tema";
-			echo "</option>";
 			while($row=mysqli_fetch_row($resultado)){
 				echo "<option value=$row[0]>";
 				echo $row[1];
 				echo "</option>";
 			}
 		echo "</select>";
-		echo "</p>";
 
-		echo "<br/>";
-		echo "<br/>";
+		echo "<br>";
+		echo "<br>";
 
-		echo "<p>";
 		echo "<input type=submit value=Ver>";
-		echo "</p>";
+
 	echo "</form>";
+
+	echo "<a href = '../Login/indexPro.php?id=$id_Asignatura'><input type = 'button' value = 'Volver'></a>";
 
 
 mysqli_close($conexion);

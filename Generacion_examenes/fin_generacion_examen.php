@@ -4,6 +4,7 @@ $num_preg=$_POST['numero_preguntas'];
 $fecha_examen=$_POST['fecha_examen'];
 $id_tema=$_POST['Tema'];
 
+$id_Asignatura = $_SESSION['ID_asignatura'];
 $_SESSION['num_preg_examen']=$num_preg;
 
 //Conectar a mysql
@@ -21,5 +22,5 @@ $_SESSION['num_preg_examen']=$num_preg;
 
 
 echo "<h2>El examen ha sido generado con éxito</h2>";
-echo '<a href="../Login/indexPro.php">Volver al Men&uacute; de profesor</a>';
+echo "<a href = '../Login/indexPro.php?id=$id_Asignatura'><input type = 'button' value = 'Volver'></a>";
 ?>

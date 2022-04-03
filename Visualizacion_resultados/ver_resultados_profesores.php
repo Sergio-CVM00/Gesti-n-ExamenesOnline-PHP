@@ -26,7 +26,8 @@
 		$consulta1="SELECT Nota from estudiante_examen WHERE ID_examen=$id_examen[0]";
 		$resultado=mysqli_query($conexion,$consulta1);
 	}
-	echo "<h2>Resultados globales del ex&aacute;men del tema ".$nombre_tema[0]." de la asignatura ".$nombre_Asignatura[0].": ";
+	echo "<h2>Resultados globales del examen del tema: "; 
+	echo $nombre_tema[0];
 	echo "</h2>";
 
 	$cont=0;
@@ -39,7 +40,7 @@
 	echo "Nota media del tema: ";
 	echo $suma/$cont;
 	echo '<br>';
-	echo '<a href="..\Login\indexPro.php">Volver</a>';
+	echo "<a href = '../Login/indexPro.php?id=$id_Asignatura'><input type = 'button' value = 'Volver'></a>";
 	
 mysqli_close($conexion);
 
