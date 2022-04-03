@@ -103,7 +103,13 @@ return $vector_preguntas;
     }
    
     $row=mysqli_fetch_row($resultado);
-    $i=$_SESSION['contador_preguntas'];
+    if(!isset($_SESSION['contador_preguntas'])){
+        $_SESSION['contador_preguntas']=0;
+    }
+    else{
+        $i=$_SESSION['contador_preguntas']; 
+    }
+    
 
     if(isset($_POST['respuesta_alumno'])){
         array_push($_SESSION['respuesta_alumno'], $_POST['respuesta_alumno']);

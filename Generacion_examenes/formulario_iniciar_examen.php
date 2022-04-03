@@ -11,8 +11,10 @@ $id_estudiante=$_SESSION['ID_estudiante'];
 //Conectar a mysql
 $conexion=mysqli_connect("127.0.0.1","root","","bdp1");
 if($conexion){
-		//Consulta para conseguir los temas que tiene una asignatura
+		//Consulta para conseguir el nombre de la asignatura
 		$consulta0="SELECT nombre FROM asignatura WHERE ID_asignatura=$id_Asignatura";
+
+		//Consulta para conseguir los temas de la asignatura elegida
 		$consulta="SELECT ID_tema FROM tema WHERE ID_asignatura=$id_Asignatura";
 
 		$resultado0=mysqli_query($conexion,$consulta0);
@@ -30,11 +32,15 @@ while($row=mysqli_fetch_row($resultado)){
 	array_push($temas,$row[0]);
 }
 
+
 $fecha_actual=date('Y-m-d');
+$examen_fecha_actual=false;
+$examen_realizado=false;
 
 foreach($temas as $id){
 	if($conexion){
-		$consulta2="SELECT ID_tema FROM examen WHERE ID_tema='$id' AND fecha='$fecha_actual'";
+		//Consulta para conseguir los temas cuya fecha es la actual
+		$consulta2="SELECT ID_tema,ID_examen FROM examen WHERE ID_tema='$id' AND fecha='$fecha_actual'";
 		$resultado2=mysqli_query($conexion,$consulta2);
 	}
 
@@ -43,33 +49,75 @@ foreach($temas as $id){
 
 	if($num_row != 0){
 		$tema=$row[0];
+		$examen=$row[1];
+		$examen_fecha_actual=true;
 	}
 }
 
-if($conexion){
+if($conexion AND $examen_fecha_actual){
 	$consulta3="SELECT nombre FROM tema WHERE ID_tema=$tema";
 	$resultado3=mysqli_query($conexion,$consulta3);
 
+	$consulta4="SELECT * FROM estudiante_examen WHERE ID_estudiante='$id_estudiante' AND ID_examen='$examen'";
+	$resultado4=mysqli_query($conexion,$consulta4);
+
 	$row=mysqli_fetch_row($resultado3);
 	$nombre_tema=$row[0];
+
+	if(mysqli_num_rows($resultado4) != 0){
+		$examen_realizado=true;
+	}
 }
+
+
 
 //Formulario:
 	echo "<h2>Examenes de la asignatura $nombre_asignatura</h2>";
 
 	echo "<form action=mostrar_examen_almacenar_respuestasII.php method=POST>";
-		echo "<p>";
-		echo "Examen Tema ".$nombre_tema;
-		echo "</p>";
 
-		echo "<br/>";
-		echo "<br/>";
+		if($examen_realizado==false && $examen_fecha_actual==true){
+			echo "<p>";
+			echo "Examen Tema ".$nombre_tema;
+			echo "</p>";
 
-		echo "<input type=hidden name=ID_tema value=$tema />";
+			echo "<br/>";
+			echo "<br/>";
 
-		echo "<p>";
-		echo "<input type=submit value=Realizar_examen>";
-		echo "</p>";
+			echo "<input type=hidden name=ID_tema value=$tema />";
+
+			echo "<p>";
+			echo "<input type=submit value=Realizar_examen>";
+			echo "</p>";
+		}
+		else if($examen_realizado==true && $examen_fecha_actual==true){
+			echo "<p>";
+			echo "Examen Tema ".$nombre_tema;
+			echo "</p>";
+
+			echo "<br/>";
+			echo "<br/>";
+
+			echo "Ya ha realizado este examen";
+
+			echo "<p>";
+			echo '<a href="..\Login\indexEst.php">Volver</a>';
+			echo "</p>";
+		}
+		else{
+			echo "<p>";
+			echo "Examenes";
+			echo "</p>";
+
+			echo "<br/>";
+			echo "<br/>";
+
+			echo "Actualmente no hay ningún examen programado";
+
+			echo "<p>";
+			echo '<a href="..\Login\indexEst.php">Volver</a>';
+			echo "</p>";
+		}
 	echo "</form>";
 
 
