@@ -5,6 +5,6 @@
         'localhost',
         'root',
         '',
-        'gestion-examenes'
+        'bdp1'
     );
 ?>

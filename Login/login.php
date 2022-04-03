@@ -54,7 +54,7 @@
             $slqPro = "SELECT email, pass FROM profesor";
             $queryPro = mysqli_query($conn, $slqPro) or die ("Error: Busqueda fallida");
             //Administradores
-            $slqAdmin = "SELECT correo, password FROM administrador";
+            $slqAdmin = "SELECT email, pass FROM administrador";
             $queryAdmin = mysqli_query($conn, $slqAdmin) or die ("Error: Busqueda fallida");
 
             //Cerrar conexion con la BD
@@ -89,7 +89,7 @@
             for($i = 0; $i < $nfilas; $i++)
             {
                 $resultado = mysqli_fetch_array($queryAdmin);
-                if(($resultado["correo"] == $_POST["email"]) && ($resultado["password"] == $_POST["pass"]))
+                if(($resultado["email"] == $_POST["email"]) && ($resultado["pass"] == $_POST["pass"]))
                 {
                     $encontrado = true;
                     header("Location: ../MenuAdmin/menuAdmin.php");

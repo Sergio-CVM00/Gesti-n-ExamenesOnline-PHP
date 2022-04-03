@@ -230,6 +230,8 @@ return $vector_preguntas;
                 echo $correctas."/".$num_preg;
                 echo "  Nota: ";
                 echo $nota;
+                echo "<br>";
+                echo '<a href="../Login/indexEst.php">Volver al menu</a>';
             echo "</body>";
         echo "</html>";
     }

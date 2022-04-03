@@ -21,8 +21,5 @@ $_SESSION['num_preg_examen']=$num_preg;
 
 
 echo "<h2>El examen ha sido generado con éxito</h2>";
-
-//Quitar, solo para pruebas
-echo "<a href=formulario_iniciar_examen.php>Realizar examen</a>"; 
-echo "<a href=#>Volver al Men&uacute; de profesor</a>";
+echo '<a href="../Login/indexPro.php">Volver al Men&uacute; de profesor</a>';
 ?>

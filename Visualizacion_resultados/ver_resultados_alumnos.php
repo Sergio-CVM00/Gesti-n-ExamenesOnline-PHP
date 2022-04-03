@@ -87,6 +87,7 @@
 		$i++;
 	}
 	echo "</table>";
+	echo '<a href="..\Login\indexEst.php">Volver</a>';
 
 mysqli_close($conexion);
 
