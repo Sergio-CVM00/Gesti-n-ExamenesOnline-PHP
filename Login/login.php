@@ -6,14 +6,14 @@
 <body>
     <h1>Iniciar sesión</h1>
     <form action = "" method = "post">
-        <label for = "email">E-Mail</label>
+        <label for = "email">E-Mail:</label>
         <br>
-        <input type = "text" name = "email">
+        <input type = "text" placeholder = "Introduce tu email" name = "email">
         <br>
         <br>
-        <label for = "pass">Contraseña</label>
+        <label for = "pass">Contraseña:</label>
         <br>
-        <input type = "password" name = "pass">
+        <input type = "password" placeholder = "Introduce tu contraseña" style = "width: 150px" name = "pass">
         <br>
         <br>
         <input type = "submit" name = "login" value = "Inciar Sesion">
@@ -50,10 +50,10 @@
 
             //Consultas
             //Estudiantes
-            $slqEst = "SELECT ID_estudiante, email, pass FROM estudiante";
+            $slqEst = "SELECT ID_estudiante, nombre, email, pass FROM estudiante";
             $queryEst = mysqli_query($conn, $slqEst) or die ("Error: Busqueda fallida");    
             //Profesores
-            $slqPro = "SELECT ID_profesor, email, pass FROM profesor";
+            $slqPro = "SELECT ID_profesor, PROFESOR_NOMBRE, email, pass FROM profesor";
             $queryPro = mysqli_query($conn, $slqPro) or die ("Error: Busqueda fallida");
             //Administradores
             $slqAdmin = "SELECT email, pass FROM administrador";
@@ -72,7 +72,8 @@
                 if(($resultado["email"] == $_POST["email"]) && ($resultado["pass"] == $_POST["pass"]))
                 {
                     $encontrado = true;
-                    $_SESSION['ID_estudiante'] = $resultado["ID_estudiante"];
+                    $_SESSION['ID_estudiante'] = $resultado['ID_estudiante'];
+                    $_SESSION['Nombre_estudiante'] = $resultado['nombre'];
                     mysqli_close($conn);
                     header("Location: est_asignatura.php");
 
@@ -86,7 +87,8 @@
                 if(($resultado["email"] == $_POST["email"]) && ($resultado["pass"] == $_POST["pass"]))
                 {
                     $encontrado = true;
-                    $_SESSION['ID_profesor'] = $resultado["ID_profesor"];
+                    $_SESSION['ID_profesor'] = $resultado['ID_profesor'];
+                    $_SESSION['Nombre_profesor'] = $resultado['PROFESOR_NOMBRE'];
                     mysqli_close($conn);
                     header("Location: pro_asignatura.php");
                 }

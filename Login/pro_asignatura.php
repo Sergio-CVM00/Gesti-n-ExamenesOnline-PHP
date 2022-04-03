@@ -1,8 +1,8 @@
-
 <?php
 $conexion = mysqli_connect("localhost", "root", "", "bdp1") or die("Error: No se pudo conecta con la BD"); 
 session_start();
 $id_profesor=$_SESSION['ID_profesor'];
+$nombre_profesor=$_SESSION['Nombre_profesor'];
 if($conexion){
 			//Consulta para conseguir los temas que tiene una asignatura
 			$consulta="SELECT ID_asignatura FROM profesor_asignatura WHERE ID_profesor=$id_profesor";
@@ -47,8 +47,11 @@ if($conexion){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pagina principal del profesor</title>
 </head>
 <body>
+	<h1>Bienvenido <?php echo $nombre_profesor;?></h1>
+	<h4>Seleccione una de sus asignaturas para ver las opciones</h4>
     <?php
     $i=0;
     while($i <  count($id_asignaturas) ) { ?>
