@@ -3,42 +3,38 @@ $conexion = mysqli_connect("localhost", "root", "", "bdp1") or die("Error: No se
 session_start();
 $id_profesor=$_SESSION['ID_profesor'];
 $nombre_profesor=$_SESSION['Nombre_profesor'];
-if($conexion){
-			//Consulta para conseguir los temas que tiene una asignatura
-			$consulta="SELECT ID_asignatura FROM profesor_asignatura WHERE ID_profesor=$id_profesor";
-			
-			$resultado=mysqli_query($conexion,$consulta);
-			
-	}
-	else{
-		echo "<h2>Error de conexi&oacute;n con la Base de datos</h2>";
-	}
-	
-	//Creamos vectores vacios para almacenar los id de examenes que ha realizado el alumno y la nota en ese examen
-	$id_asignaturas=array();
+if($conexion)
+{
+	//Consulta para conseguir los temas que tiene una asignatura
+	$consulta="SELECT ID_asignatura FROM profesor_asignatura WHERE ID_profesor=$id_profesor";	
+	$resultado=mysqli_query($conexion,$consulta);		
+}
+else
+{
+	echo "<h2>Error de conexion con la Base de datos</h2>";
+}
 
-	//Almacenamos en los vectores anteriores los datos almacenado en la Base de Datos
-	while($row=mysqli_fetch_row($resultado)){
-		array_push($id_asignaturas,$row[0]);
-	}
-	
-	//Creamos un vector vacio para almacenar el id del tema al que pertenecen los examenes que ha realizado el alumno 
-	$nombres=array();
+//Creamos vectores vacios para almacenar los id de examenes que ha realizado el alumno y la nota en ese examen
+$id_asignaturas=array();
 
-	foreach($id_asignaturas as $id){
-		if($conexion){
-			$consulta2="SELECT nombre FROM asignatura WHERE ID_asignatura=$id";
-			$resultado2=mysqli_query($conexion,$consulta2);
+//Almacenamos en los vectores anteriores los datos almacenado en la Base de Datos
+while($row=mysqli_fetch_row($resultado)){
+	array_push($id_asignaturas,$row[0]);
+}
 
-			while($row=mysqli_fetch_row($resultado2)){
-				array_push($nombres, $row[0]);
-                
-			}
+//Creamos un vector vacio para almacenar el id del tema al que pertenecen los examenes que ha realizado el alumno 
+$nombres=array();
 
+foreach($id_asignaturas as $id){
+	if($conexion){
+		$consulta2="SELECT nombre FROM asignatura WHERE ID_asignatura=$id";
+		$resultado2=mysqli_query($conexion,$consulta2);
+
+		while($row=mysqli_fetch_row($resultado2)){
+			array_push($nombres, $row[0]);			
 		}
-    }
-
-    
+	}
+}    
 ?>
 
 <!DOCTYPE html>
@@ -52,18 +48,21 @@ if($conexion){
 <body>
 	<h1>Bienvenido <?php echo $nombre_profesor;?></h1>
 	<h4>Seleccione una de sus asignaturas para ver las opciones</h4>
+	<ol>
     <?php
     $i=0;
-    while($i <  count($id_asignaturas) ) { ?>
-        <tr>
-        <td>
-
+    while($i < count($id_asignaturas)) 
+	{ 
+	?>
+        <li>
             <a href="indexPro.php?id=<?php echo $id_asignaturas[$i]?>" >
                 <?php echo $nombres[$i]; echo '<br>'; ?>
-            </a>
-                                            
-        </td>
-        </tr>
-    <?php $i++; } ?>
+            </a>                                            
+		</li>
+    <?php 
+	$i++; 
+	} 
+	?>
+	</ol>
 </body>
 </html>
