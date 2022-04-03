@@ -11,14 +11,15 @@
 			$resultado=mysqli_query($conexion,$consulta);
 	}
 	else{
-		echo "<h2>Error de conexi&oacute;n con la Base de datos</h2>";
+		echo "<h2>Error de conexion con la Base de datos</h2>";
 	}
 
 	//Formulario:
-	echo "<h2>Formulario Generaci&oacute;n de Examenes</h2>";
+	echo "<h2>Creación de examen</h2>";
 
 	echo "<form action=formulario_generacionII.php method=POST>";
-		echo "<p>Tema:";
+		echo "Tema:";
+		echo "<br>";
 		echo "<select name=Tema>"; 
 			echo "<option value=disabled selected>";
 				echo "Elija un tema";
@@ -29,14 +30,12 @@
 				echo "</option>";
 			}
 		echo "</select>";
-		echo "</p>";
-		echo "<br/>";
-		echo "<br/>";
-
-		echo "<p>";
+		echo "<br>";
+		echo "<br>";
 		echo "<input type=submit value=Siguiente>";
-		echo "</p>";
 	echo "</form>";
+	echo "<br>";
+	echo "<a href = '../Login/indexPro.php'><input type = 'button' value = 'Cancelar'></a>";
 
 
 mysqli_close($conexion);
