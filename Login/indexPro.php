@@ -3,3 +3,5 @@
 <br>
 <a href = "../Visualizacion_resultados/formulario_visualizacion_profesores.php">Visualizar resultados</a>
 <br>
+<a href = "..\crud-preguntas\index.php">Gestor de preguntas</a>
+<br>

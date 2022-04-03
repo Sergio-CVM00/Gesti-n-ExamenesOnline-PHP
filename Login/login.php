@@ -42,23 +42,25 @@
         }
         else    //Todos los campos llenos
         {
+            session_start();
+            
             //Buscar el usuario en la BD
             //Conexion con la BD
             $conn = mysqli_connect("localhost", "root", "", "bdp1") or die("Error: No se pudo conecta con la BD"); 
 
             //Consultas
             //Estudiantes
-            $slqEst = "SELECT email, pass FROM estudiante";
+            $slqEst = "SELECT ID_estudiante, email, pass FROM estudiante";
             $queryEst = mysqli_query($conn, $slqEst) or die ("Error: Busqueda fallida");    
             //Profesores
-            $slqPro = "SELECT email, pass FROM profesor";
+            $slqPro = "SELECT ID_profesor, email, pass FROM profesor";
             $queryPro = mysqli_query($conn, $slqPro) or die ("Error: Busqueda fallida");
             //Administradores
             $slqAdmin = "SELECT email, pass FROM administrador";
             $queryAdmin = mysqli_query($conn, $slqAdmin) or die ("Error: Busqueda fallida");
 
-            //Cerrar conexion con la BD
-            mysqli_close($conn);    
+            
+                
 
             //Buscar coincidencia
             $encontrado = false;
@@ -70,7 +72,10 @@
                 if(($resultado["email"] == $_POST["email"]) && ($resultado["pass"] == $_POST["pass"]))
                 {
                     $encontrado = true;
+                    $_SESSION['ID_estudiante'] = $resultado["ID_estudiante"];
+                    mysqli_close($conn);
                     header("Location: indexEst.php");
+
                 }
             }
             //Busqueda en profesor
@@ -81,6 +86,8 @@
                 if(($resultado["email"] == $_POST["email"]) && ($resultado["pass"] == $_POST["pass"]))
                 {
                     $encontrado = true;
+                    $_SESSION['ID_profesor'] = $resultado["ID_profesor"];
+                    mysqli_close($conn);
                     header("Location: indexPro.php");
                 }
             }
@@ -92,6 +99,7 @@
                 if(($resultado["email"] == $_POST["email"]) && ($resultado["pass"] == $_POST["pass"]))
                 {
                     $encontrado = true;
+                    mysqli_close($conn);
                     header("Location: ../MenuAdmin/menuAdmin.php");
                 }
             }
@@ -103,6 +111,7 @@
                 echo "Error:";
                 echo '<br>';
                 echo "E-Mail o contraseña incorrecto";
+                mysqli_close($conn);
             }
         }
     }
