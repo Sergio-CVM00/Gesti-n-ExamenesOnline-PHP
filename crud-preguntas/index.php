@@ -3,7 +3,11 @@
     <main class="container p-4">
 
         <!-- MESSAGES -->
-        <?php if (isset($_SESSION['message'])) { ?>
+        <?php 
+            session_start();
+            $id_Asignatura=$_SESSION['ID_asignatura'];
+            
+            if (isset($_SESSION['message'])) { ?>
             <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
                 <?= $_SESSION['message']?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -63,6 +67,7 @@
                             </thead>
                             <tbody>
                                 <?php
+                                
                                 $query = "SELECT * FROM `preguntas`";
                                 $result_preguntas = mysqli_query($conn, $query);
 
@@ -87,7 +92,6 @@
                             </tbody>
                         </table>
                     </div> 
-
                 </div>
         </div>
     </main>

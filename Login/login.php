@@ -74,7 +74,7 @@
                     $encontrado = true;
                     $_SESSION['ID_estudiante'] = $resultado["ID_estudiante"];
                     mysqli_close($conn);
-                    header("Location: indexEst.php");
+                    header("Location: est_asignatura.php");
 
                 }
             }

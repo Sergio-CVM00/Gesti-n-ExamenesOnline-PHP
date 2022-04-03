@@ -67,13 +67,7 @@ function generar_preguntas($tema,$num_preg){
 return $vector_preguntas;
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Tema de la que se va a realiza el examen
-    $_SESSION['ID_asignatura_elegida']=2;
-    $id_Asignatura=$_SESSION['ID_asignatura_elegida'];
-   
-        
-    //id del estudiante que realiza el examen
-    $_SESSION['ID_estudiante']=1;
+    $id_Asignatura=$_SESSION['ID_asignatura'];
     $id_estudiante=$_SESSION['ID_estudiante'];
 
     

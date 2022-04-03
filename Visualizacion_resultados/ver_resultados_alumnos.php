@@ -38,7 +38,10 @@
 
 	foreach($examenes as $id){
 		if($conexion){
-			$consulta3="SELECT ID_tema FROM examen WHERE ID_examen=$id";
+
+			$consultaclave = "SELECT ID_tema FROM tema WHERE ID_asignatura=$id_Asignatura";
+			$temaclave=mysqli_query($conexion,$consultaclave);
+			$consulta3 = "SELECT ID_tema FROM examen WHERE ID_examen=$id AND ID_tema=$temaclave[0]";
 			$resultado3=mysqli_query($conexion,$consulta3);
 
 			while($row=mysqli_fetch_row($resultado3)){

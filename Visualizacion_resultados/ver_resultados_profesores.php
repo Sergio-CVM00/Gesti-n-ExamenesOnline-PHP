@@ -38,6 +38,7 @@
 
 	echo "Nota media del tema: ";
 	echo $suma/$cont;
+	echo '<br>';
 	echo '<a href="..\Login\indexPro.php">Volver</a>';
 	
 mysqli_close($conexion);
