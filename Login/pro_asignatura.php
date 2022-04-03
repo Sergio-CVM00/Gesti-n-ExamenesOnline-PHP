@@ -11,30 +11,35 @@ if($conexion)
 }
 else
 {
-	echo "<h2>Error de conexion con la Base de datos</h2>";
+	echo "<h2>Error de conexion con la base de datos</h2>";
 }
 
 //Creamos vectores vacios para almacenar los id de examenes que ha realizado el alumno y la nota en ese examen
 $id_asignaturas=array();
 
 //Almacenamos en los vectores anteriores los datos almacenado en la Base de Datos
-while($row=mysqli_fetch_row($resultado)){
+while($row=mysqli_fetch_row($resultado))
+{
 	array_push($id_asignaturas,$row[0]);
 }
 
-//Creamos un vector vacio para almacenar el id del tema al que pertenecen los examenes que ha realizado el alumno 
+//Creamos un vector vacio para almacenar el id del tema al que pertenecen los examenes que ha realizado el alumno
 $nombres=array();
 
-foreach($id_asignaturas as $id){
-	if($conexion){
+foreach($id_asignaturas as $id)
+{
+	if($conexion)
+	{
 		$consulta2="SELECT nombre FROM asignatura WHERE ID_asignatura=$id";
 		$resultado2=mysqli_query($conexion,$consulta2);
 
-		while($row=mysqli_fetch_row($resultado2)){
+		while($row=mysqli_fetch_row($resultado2))
+		{
 			array_push($nombres, $row[0]);			
 		}
 	}
-}    
+}
+mysqli_close($conexion);   
 ?>
 
 <!DOCTYPE html>
@@ -64,5 +69,6 @@ foreach($id_asignaturas as $id){
 	} 
 	?>
 	</ol>
+	<a href = "login.php"><input type = "button" value = "Cerrar sesion"></a>
 </body>
 </html>
