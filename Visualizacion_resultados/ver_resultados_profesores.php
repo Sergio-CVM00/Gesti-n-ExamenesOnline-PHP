@@ -1,8 +1,6 @@
 <?php
 	session_start();
 	//id de profesor (y asignatura que da?) es pasado por session
-	$_SESSION['ID_asignatura']=2;
-	
 	$id_tema=$_POST['Tema'];
 	$id_Asignatura=$_SESSION['ID_asignatura'];
 	//Conectar a mysql
@@ -40,6 +38,7 @@
 
 	echo "Nota media del tema: ";
 	echo $suma/$cont;
+	echo '<a href="..\Login\indexPro.php">Volver</a>';
 	
 mysqli_close($conexion);
 

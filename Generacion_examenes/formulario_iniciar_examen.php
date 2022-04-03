@@ -3,12 +3,9 @@ session_start();
 //Recoger de tabla examen numero preguntas y el tema del examen según la asignatura y la fecha de realización del examen
 //Tablas examen, tema, estudiante_examen
 
-//Asignatura es enviada a través de session
-$_SESSION['ID_asignatura_elegida']=2;	//Para comprobar
-$id_Asignatura=$_SESSION['ID_asignatura_elegida'];
+$id_Asignatura=$_SESSION['ID_asignatura'];
 
 //id del estudiante que se ha identificado 
-$_SESSION['ID_estudiante']=1;	//Para probar
 $id_estudiante=$_SESSION['ID_estudiante'];
 
 //Conectar a mysql

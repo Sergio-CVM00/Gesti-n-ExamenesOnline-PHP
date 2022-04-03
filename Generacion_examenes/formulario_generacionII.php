@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	//id asignatura que da el profesor y el tema
-	$id_Asignatura=$_SESSION['ID_asignatura_elegida'];
+	$id_Asignatura=$_SESSION['ID_asignatura'];
 
 	$id_tema=$_POST['Tema'];
 

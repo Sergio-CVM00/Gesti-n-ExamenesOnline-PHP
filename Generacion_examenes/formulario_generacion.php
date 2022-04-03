@@ -1,10 +1,7 @@
 <?php
 	session_start();
-	//Para probar ponemos el ID_Asignatura a 1
-	$_SESSION['ID_asignatura_elegida']=2;
-
 	//ID asignatura es enviado a través de Session
-	$id_Asignatura=$_SESSION['ID_asignatura_elegida'];
+	$id_Asignatura=$_SESSION['ID_asignatura'];
 
 	//Conectar a mysql
 	$conexion=mysqli_connect("127.0.0.1","root","","bdp1");

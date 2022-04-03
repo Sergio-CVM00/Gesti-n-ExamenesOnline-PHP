@@ -1,8 +1,5 @@
 <?php
 	session_start();
-	//id de profesor (y asignatura que da?) es pasado por session
-	$_SESSION['ID_asignatura']=2;
-	
 	$id_Asignatura=$_SESSION['ID_asignatura'];
 	//Conectar a mysql
 	$conexion=mysqli_connect("127.0.0.1","root","","bdp1");

@@ -1,8 +1,6 @@
 <?php
 	session_start();
 	//id de estudiante y asignatura que es pasado por session
-	$_SESSION['ID_estudiante']=1;
-	
 	$id_Asignatura=$_SESSION['ID_asignatura'];
 	$id_estudiante=$_SESSION['ID_estudiante'];
 

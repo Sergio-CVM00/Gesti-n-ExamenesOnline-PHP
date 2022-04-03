@@ -5,3 +5,5 @@
 <br>
 <a href = "login.php">Cerrar sesion</a>
 
+<?php
+?>

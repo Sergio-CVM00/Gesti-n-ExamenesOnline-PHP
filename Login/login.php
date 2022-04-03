@@ -88,7 +88,7 @@
                     $encontrado = true;
                     $_SESSION['ID_profesor'] = $resultado["ID_profesor"];
                     mysqli_close($conn);
-                    header("Location: indexPro.php");
+                    header("Location: pro_asignatura.php");
                 }
             }
             //Busqueda en administraor
