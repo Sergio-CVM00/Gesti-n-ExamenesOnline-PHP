@@ -16,9 +16,24 @@
 
     <title>CRUD PREGUNTAS</title>
 </head>
+<?php
+    $id_Asignatura=$_SESSION['ID_asignatura'];
+    $consulta2= "SELECT nombre from asignatura WHERE ID_asignatura=$id_Asignatura";
+    $resultado2=mysqli_query($conn,$consulta2);
+    $nombre_Asignatura=mysqli_fetch_row($resultado2);
+
+    $consulta_temas= "SELECT ID_tema from tema WHERE ID_asignatura=$id_Asignatura";
+    $tema = mysqli_query($conn,$consulta_temas);
+    
+?>
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container">
-            <a href="index.php" class="navbar-brand">CRUD PREGUNTAS</a>
+            <a href="index.php" class="navbar-brand">Preguntas de <?php echo $nombre_Asignatura[0]; ?></a>
+            <a class="nav-link text-white"> Temas disponibles: <?php while( $tema_Asignatura = mysqli_fetch_row($tema) ){echo $tema_Asignatura[0]; echo', ';}  ?> </a>
+            <li class="nav-item">
+                <a class="nav-link text-white" href ="../Login/indexPro.php?id=<?php echo $id_Asignatura;?>" >Volver al menu</a>
+            </li
         </div>
+        
     </nav>

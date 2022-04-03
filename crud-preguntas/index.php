@@ -4,7 +4,6 @@
 
         <!-- MESSAGES -->
         <?php 
-            session_start();
             $id_Asignatura=$_SESSION['ID_asignatura'];
             
             if (isset($_SESSION['message'])) { ?>
@@ -68,7 +67,11 @@
                             <tbody>
                                 <?php
                                 
-                                $query = "SELECT * FROM `preguntas`";
+                                //$query = "SELECT * FROM preguntas";
+                                $query = "SELECT preguntas.ID_tema, preguntas.ID_pregunta , preguntas.pregunta, preguntas.pregunta, preguntas.solucion, preguntas.fecha_creacion
+                                FROM preguntas,tema
+                                WHERE preguntas.ID_tema = tema.ID_tema AND tema.ID_asignatura = $id_Asignatura";
+
                                 $result_preguntas = mysqli_query($conn, $query);
 
                                 while($row = mysqli_fetch_assoc($result_preguntas)) { ?>
