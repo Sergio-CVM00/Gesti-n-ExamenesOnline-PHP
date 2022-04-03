@@ -20,26 +20,35 @@
 	$num_preguntas=mysqli_num_rows($resultado);
 	$fecha_actual=date('Y-M-D');
 	//Formulario:
-	echo "<h2>Formulario Generaci&oacute;n de Examenes</h2>";
+	echo "<h2>Creación de examen</h2>";
 
 	echo "<form action=fin_generacion_examen.php method=POST>";
 	
-		echo "<p>Número de preguntas:";
+		echo "Número de preguntas:";
+		echo "<br>";
 		echo "<input type=number name=numero_preguntas min=1 max=$num_preguntas >";
-		echo "</p>";
+		echo "<br>";
+		echo "<br>";
 
-		echo "<p>Fecha Examen:";
+		echo "Fecha:";
+		echo "<br>";
 		echo "<input type=date name=fecha_examen value=$fecha_actual >";
-		echo "</p>";
 
 		echo "<input type=hidden name=Tema value=$id_tema />";
-
-		echo "<p>";
+		echo "<br>";
+		echo "<br>";
 		echo "<input type=submit value=Crear Examen>";
-		echo "</p>";
 	echo "</form>";
+	echo "<br>";
+	echo "<a href = '../Login/indexPro.php?id=$id_Asignatura'><input type = 'button' value = 'Cancelar'></a>";
 
 
 mysqli_close($conexion);
 
 ?>
+
+<!DOCTYPE html>
+<head>
+	<title>Crear examen</title>
+</head>
+</html>

@@ -5,12 +5,14 @@
 
 	//Conectar a mysql
 	$conexion=mysqli_connect("127.0.0.1","root","","bdp1");
-	if($conexion){
-			//Consulta para conseguir los temas que tiene una asignatura
-			$consulta="SELECT * FROM tema WHERE ID_asignatura=$id_Asignatura";
-			$resultado=mysqli_query($conexion,$consulta);
+	if($conexion)
+	{
+		//Consulta para conseguir los temas que tiene una asignatura
+		$consulta="SELECT * FROM tema WHERE ID_asignatura=$id_Asignatura";
+		$resultado=mysqli_query($conexion,$consulta);
 	}
-	else{
+	else
+	{
 		echo "<h2>Error de conexion con la Base de datos</h2>";
 	}
 
@@ -21,9 +23,6 @@
 		echo "Tema:";
 		echo "<br>";
 		echo "<select name=Tema>"; 
-			echo "<option value=disabled selected>";
-				echo "Elija un tema";
-			echo "</option>";
 			while($row=mysqli_fetch_row($resultado)){
 				echo "<option value=$row[0]>";
 				echo $row[1];
@@ -35,9 +34,15 @@
 		echo "<input type=submit value=Siguiente>";
 	echo "</form>";
 	echo "<br>";
-	echo "<a href = '../Login/indexPro.php'><input type = 'button' value = 'Cancelar'></a>";
+	echo "<a href = '../Login/indexPro.php?id=$id_Asignatura'><input type = 'button' value = 'Cancelar'></a>";
 
 
 mysqli_close($conexion);
 
 ?>
+
+<!DOCTYPE html>
+<head>
+	<title>Crear examen</title>
+</head>
+</html>
