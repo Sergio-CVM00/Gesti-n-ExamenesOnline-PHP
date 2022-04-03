@@ -16,7 +16,7 @@
 			$resultado3=mysqli_query($conexion,$consulta3);
 	}
 	else{
-		echo "<h2>Error de conexi&oacute;n con la Base de datos</h2>";
+		echo "<h2>Error de conexion con la Base de datos</h2>";
 	}
 	$nombre_Asignatura=mysqli_fetch_row($resultado2);
 	$nombre_tema=mysqli_fetch_row($resultado3);
@@ -26,7 +26,7 @@
 		$consulta1="SELECT Nota from estudiante_examen WHERE ID_examen=$id_examen[0]";
 		$resultado=mysqli_query($conexion,$consulta1);
 	}
-	echo "<h2>Resultados globales del examen del tema: "; 
+	echo "<h2>Media global del examen del tema: "; 
 	echo $nombre_tema[0];
 	echo "</h2>";
 
@@ -40,8 +40,15 @@
 	echo "Nota media del tema: ";
 	echo $suma/$cont;
 	echo '<br>';
+	echo '<br>';
 	echo "<a href = '../Login/indexPro.php?id=$id_Asignatura'><input type = 'button' value = 'Volver'></a>";
 	
 mysqli_close($conexion);
 
 ?>
+
+<!DOCTYPE html>
+<head>
+	<title>Resultados</title>
+</head>
+</html>

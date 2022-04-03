@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <head>
     <title>DAR DE BAJA ESTUDIANTE</title>
-<head>
+</head>    
 
 <body>
-    <h1>Dar de baja al estudiante</h1>
+<h1>Dar de baja al estudiante</h1>
     <form action = "" method = "post">
         <label for = "email">E-Mail</label>
         <br>
@@ -21,12 +21,35 @@
         <input type = "submit" name = "singup" value = "Completar dar de baja">
     </form>
     <br>
-    <a href = "menuAdmin.php">Volver</a> 
+    <a href = "menuAdmin.php"><input type = "button" value = "Volver"></a>
 </body>
+</html>
 <!------------------->
 <!--------PHP--------> 
 <!------------------->
 <?php
+    //Conexion con la BD
+    $conn = mysqli_connect("localhost", "root", "", "bdp1") or die("Error: No se pudo conecta con la BD");
+
+    //Recoger a todos los estudiantes
+    $sql = "SELECT ID_estudiante, nombre, email FROM estudiante";
+    $query = mysqli_query($conn, $sql);
+    mysqli_close($conn);
+    
+    $nfilas = mysqli_num_rows($query);
+
+    if(isset($_POST["baja"]))
+    {
+        //Conexion con la BD
+        $conn = mysqli_connect("localhost", "root", "", "bdp1") or die("Error: No se pudo conecta con la BD");
+
+        //Borrar estudiante
+        $sql = "DELETE FROM estudiante WHERE ";
+        $query = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+    }
+
+/*
     //Comprobar el envio del formulario
     if(isset($_POST["singup"]))
     {
@@ -64,5 +87,34 @@
             header("Location: confirmBaja.php");
         }
     }
+
+    <h1>Dar de baja a estudiantes</h1>
+    <h4>Pulse "Dar de baja" en el estudiante deseado</h4>
+
+    <?php
+        echo '<form action = "" method = "post"';
+        for($i = 0; $i < $nfilas; $i++)
+        {
+            $resultado = mysqli_fetch_array($query);
+            echo '<br>';
+            echo '<h5>Estudiante '.$resultado['ID_estudiante']; echo '</h5>';
+            echo '<ul>';
+                echo '<li>';
+                    echo 'Nombre: '.$resultado['nombre'];
+                echo '</li>';
+                echo '<li>';
+                    echo 'E-Mail: '.$resultado['email'];
+                echo '</li>';
+            echo '</ul>';
+            echo '<input type = "submit" name = "baja" value = "Dar de baja"';
+            echo '<br>';
+            echo '<br>';
+            echo '<br>';
+        }
+        echo '</form>';
+    ?>    
+    <a href = "menuAdmin.php"><input type = "button" value = "Volver"></a> 
+
+    
+*/
 ?>
-</html>

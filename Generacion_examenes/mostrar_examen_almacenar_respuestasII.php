@@ -16,7 +16,7 @@ function generar_preguntas($tema,$num_preg){
             $resultado=mysqli_query($conexion,$consulta);
     }
     else{
-        echo "<h2>Error de conexi&oacute;n con la Base de datos</h2>";
+        echo "<h2>Error de conexion con la Base de datos</h2>";
     }
     //Variables para controlar los bucles
     $cont=0;
@@ -56,12 +56,10 @@ function generar_preguntas($tema,$num_preg){
     
     //Introducimos en otro vector preguntas aleatorias que van a ser mostradas a los alumnos
     //La cantidad de preguntas almacenadas dependerá del número elegido por el profesor
-    while($cont < $num_preg){
-
-
+    while($cont < $num_preg)
+    {
         array_push($vector_preguntas, $vector_todas_preguntas[$indices[$cont]]);
-        $cont++;
-        
+        $cont++;        
     }
 
 return $vector_preguntas;
@@ -92,7 +90,6 @@ return $vector_preguntas;
     $num_preg=$row[0];
     $id_examen=$row[1];
 
-    $conexion=mysqli_connect("localhost","root","","bdp1");
     if($conexion){
             //Consulta para obtener los datos de las preguntas
             $consulta="SELECT nombre from tema WHERE ID_tema=$tema";
@@ -149,10 +146,10 @@ return $vector_preguntas;
                 echo "</p>";
     
                 if($i!=$num_preg-1){
-                    echo "<input type=submit name=siguiente value=siguiente />";
+                    echo "<input type=submit name=siguiente value=Siguiente />";
                 }   
                 if($i==$num_preg-1){
-                    echo "<input type=submit name=terminar value=terminar />";
+                    echo "<input type=submit name=terminar value=Terminar />";
                 }
 
             echo "</form>";
@@ -168,17 +165,17 @@ return $vector_preguntas;
                 echo "</title>";
              echo "</head>";
              echo "<body>";
-                echo "<h2>Resultado Examen Tema $row[0] </h2>";
+                echo "<h2>Resultado del examen del tema: $row[0] </h2>";
 
                 $correctas=0;
-                echo "Respuestas erroneas     ";
-                echo "     Respuesta correcta";
+                echo "Pregunta mal contestada => Solucion correcta";
+                echo "<br>";
                 echo "<br>";
                 $i=0;
 
-                $conexion=mysqli_connect("localhost","root","","bdp1");
-                
+                $conexion=mysqli_connect("localhost","root","","bdp1");                
 
+                echo "<ul>";
                 while($i<$num_preg){
                     if($_SESSION['respuesta_alumno'][$i]==$_SESSION['respuesta_correcta'][$i]){
                         $correctas++;
@@ -198,14 +195,15 @@ return $vector_preguntas;
                             $resultado2=mysqli_query($conexion,$consulta2);                 
                         }
                         else{
-                            echo "<h2>Error de conexi&oacute;n con la Base de datos</h2>";
+                            echo "<h2>Error de conexion con la Base de datos</h2>";
                         }
             
                         $fila=mysqli_fetch_row($resultado2);
+                        echo "<li>";
                         echo $fila[0];
-                        echo "=>";
+                        echo " => ";
                         echo $_SESSION['respuesta_correcta'][$i];
-                        echo "<br>";
+                        echo "</li>";
 
                         if($conexion){
                             $id_pregunta=$_SESSION['enunciado_pregunta'][$i];
@@ -217,6 +215,7 @@ return $vector_preguntas;
                     }
                     $i++;
                 }
+                echo "</ul>";
 
                 $nota=$correctas*10/$num_preg;
                 if($conexion){
@@ -231,9 +230,11 @@ return $vector_preguntas;
                 echo "  Nota: ";
                 echo $nota;
                 echo "<br>";
-                echo '<a href="../Login/indexEst.php">Volver al menu</a>';
+                echo "<br>";
+                echo "<a href = '../Login/indexEst.php?id=$id_Asignatura'><input type = 'button' value = 'Volver al menu'></a>";
             echo "</body>";
         echo "</html>";
+        mysqli_close($conexion);
     }
 
     else{
@@ -256,5 +257,6 @@ return $vector_preguntas;
                 echo "</form>";
             echo "</body>";
         echo "</html>";
-    }      
+        mysqli_close($conexion);
+    } 
 ?>

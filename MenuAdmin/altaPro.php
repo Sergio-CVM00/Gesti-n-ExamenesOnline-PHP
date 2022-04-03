@@ -33,7 +33,7 @@
         <input type = "submit" name = "singup" value = "Completar registro">
     </form>
     <br>
-    <a href = "menuAdmin.php">Volver</a> 
+    <a href = "menuAdmin.php"><input type = "button" value = "Volver"></a>  
 </body>
 <!------------------->
 <!--------PHP--------> 

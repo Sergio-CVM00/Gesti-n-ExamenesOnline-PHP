@@ -23,7 +23,8 @@
     $resultado2=mysqli_query($conn,$consulta2);
     $nombre_Asignatura=mysqli_fetch_row($resultado2);
 
-    $consulta_temas= "SELECT ID_tema from tema WHERE ID_asignatura=$id_Asignatura";
+    //$consulta_temas= "SELECT ID_tema from tema WHERE ID_asignatura=$id_Asignatura";
+    $consulta_temas= "SELECT ID_tema, nombre from tema WHERE ID_asignatura=$id_Asignatura";
     $temaHeader = mysqli_query($conn,$consulta_temas);
     
 ?>
@@ -31,7 +32,7 @@
     <nav class="navbar navbar-dark bg-dark">
         <div class="container">
             <a href="index.php" class="navbar-brand">Preguntas de <?php echo $nombre_Asignatura[0]; ?></a>
-            <a class="nav-link text-white"> Temas disponibles: <?php while( $tema_Asignatura = mysqli_fetch_row($temaHeader) ){echo $tema_Asignatura[0]; echo', ';}  ?> </a>
+            <a class="nav-link text-white"> Temas disponibles: <?php while( $tema_Asignatura = mysqli_fetch_row($temaHeader) ){echo $tema_Asignatura[0].': '.$tema_Asignatura[1].', ';}  ?> </a>
             <li class="nav-item">
                 <a class="nav-link text-white" href ="../Login/indexPro.php?id=<?php echo $id_Asignatura;?>" >Volver al menu</a>
             </li
