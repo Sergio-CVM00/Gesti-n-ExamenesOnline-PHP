@@ -8,60 +8,29 @@
 	$conexion=mysqli_connect("127.0.0.1","root","","bdp1");
 	if($conexion){
 			//Consulta para conseguir los temas que tiene una asignatura
-			$consulta0="SELECT nombre FROM estudiante WHERE ID_estudiante=$id_estudiante";
-			$consulta="SELECT ID_examen,Nota FROM estudiante_examen WHERE ID_estudiante=$id_estudiante";
+			$consulta="SELECT nombre FROM estudiante WHERE ID_estudiante=$id_estudiante";
 			$consulta2="SELECT nombre from asignatura WHERE ID_asignatura=$id_Asignatura";
+			$consulta3="SELECT estudiante_examen.Nota, tema.nombre FROM estudiante_examen, examen, tema WHERE estudiante_examen.ID_estudiante=$id_estudiante AND tema.ID_asignatura=$id_Asignatura AND estudiante_examen.ID_examen=examen.ID_examen AND examen.ID_tema=tema.ID_tema";
 
-			$resultado0=mysqli_query($conexion,$consulta0);
 			$resultado=mysqli_query($conexion,$consulta);
 			$resultado2=mysqli_query($conexion,$consulta2);
+			$resultado3=mysqli_query($conexion,$consulta3);
 	}
 	else{
 		echo "<h2>Error de conexi&oacute;n con la Base de datos</h2>";
 	}
 
-	$nombre_alumno=mysqli_fetch_row($resultado0);
+	$nombre_alumno=mysqli_fetch_row($resultado);
 	$nombre_Asignatura=mysqli_fetch_row($resultado2);
 
 	//Creamos vectores vacios para almacenar los id de examenes que ha realizado el alumno y la nota en ese examen
-	$examenes=array();
+	$temas=array();
 	$nota=array();
 
 	//Almacenamos en los vectores anteriores los datos almacenado en la Base de Datos
-	while($row=mysqli_fetch_row($resultado)){
-		array_push($examenes,$row[0]);
-		array_push($nota, $row[1]);
-	}
-	
-	//Creamos un vector vacio para almacenar el id del tema al que pertenecen los examenes que ha realizado el alumno 
-	$temas=array();
-
-	foreach($examenes as $id){
-		if($conexion){
-
-			$consultaclave = "SELECT ID_tema FROM tema WHERE ID_asignatura=$id_Asignatura";
-			$temaclave=mysqli_query($conexion,$consultaclave);
-			$consulta3 = "SELECT ID_tema FROM examen WHERE ID_examen=$id AND ID_tema=$temaclave[0]";
-			$resultado3=mysqli_query($conexion,$consulta3);
-
-			while($row=mysqli_fetch_row($resultado3)){
-				array_push($temas, $row[0]);
-			}
-		}
-	}
-
-	//Creamos un vector vacio para almacenar el nombre del tema al que pertenecen los examenes que ha realizado el alumno 
-	$nombre_tema=array();
-
-	foreach($temas as $id_t){
-		if($conexion){
-			$consulta4="SELECT nombre FROM tema WHERE ID_tema=$id_t";
-			$resultado4=mysqli_query($conexion,$consulta4);
-		}
-
-		while($row=mysqli_fetch_row($resultado4)){
-			array_push($nombre_tema, $row[0]);
-		}
+	while($row=mysqli_fetch_row($resultado3)){
+		array_push($nota,$row[0]);
+		array_push($temas, $row[1]);
 	}
 
 	//Mostramos los resultados
@@ -73,11 +42,11 @@
 	echo "<tr bgcolor=#091DFB><td><p style=color:white>Nombre del Tema</p></td><td><p style=color:white>Nota del examen</p></td></tr>";
 	$i=0;
 	$j=0;
-	while($i<count($examenes)){
+	while($i<count($temas)){
 		echo "<tr bgcolor=#C0C0C0>";
 		
 		echo "<td>";
-		echo $nombre_tema[$j];
+		echo $temas[$j];
 		echo "</td>";
 		echo "<td>";
 		echo $nota[$j];
