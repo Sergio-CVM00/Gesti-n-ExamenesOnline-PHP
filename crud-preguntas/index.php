@@ -4,8 +4,8 @@
 
         <!-- MESSAGES -->
         <?php 
+            //session_start();
             $id_Asignatura=$_SESSION['ID_asignatura'];
-            
             if (isset($_SESSION['message'])) { ?>
             <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
                 <?= $_SESSION['message']?>
@@ -13,7 +13,7 @@
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-        <?php session_unset(); } ?> <!-- limpiar los datos una vez refresco -->
+        <?php } ?> 
 
         <div class="container p-4">
                 <div class="row">
@@ -25,13 +25,6 @@
                                     <input type="text" name="tema" class="form-control"
                                     placeholder= "Nº Tema" autofocus>
                                 </div>
-
-                                <div class="form-group">
-                                    <input type="text" name="indice" class="form-control"
-                                    placeholder= "Nº pregunta" autofocus>
-                                </div>
-
-                                
 
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1"></label>
@@ -68,7 +61,7 @@
                                 <?php
                                 
                                 //$query = "SELECT * FROM preguntas";
-                                $query = "SELECT preguntas.ID_tema, preguntas.ID_pregunta , preguntas.pregunta, preguntas.pregunta, preguntas.solucion, preguntas.fecha_creacion
+                                $query = "SELECT preguntas.ID_tema AS 'ID_tema' , preguntas.ID_pregunta AS 'ID_pregunta' , preguntas.pregunta as 'pregunta', preguntas.solucion as 'solucion', preguntas.fecha_creacion as 'fecha_creacion'
                                 FROM preguntas,tema
                                 WHERE preguntas.ID_tema = tema.ID_tema AND tema.ID_asignatura = $id_Asignatura";
 

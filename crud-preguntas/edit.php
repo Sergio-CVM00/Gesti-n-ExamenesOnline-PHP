@@ -4,19 +4,17 @@
         $id = $_GET['id'];
         $query = "SELECT * FROM preguntas WHERE ID_pregunta = $id ";
         $result = mysqli_query($conn, $query);
-        if(mysqli_num_rows($result)==1){
             $row = mysqli_fetch_array($result);
             $indice = $row['ID_pregunta'];
             $tema = $row['ID_tema'];
             $pregunta = $row['pregunta'];
             $solucion = $row['solucion'];    
-        }
     }    
 
 
     if (isset($_POST['update'])) {
-        $indice = $_GET['id'];
-        $tema = $_POST['tema'];
+        //$indice = $_GET['id'];
+        //$tema = $_POST['tema'];
         $pregunta = $_POST['pregunta'];
         $solucion = $_POST['solucion'];
       
@@ -38,13 +36,7 @@
       <form action="edit.php?id=<?php echo $_GET['id']; ?>" method="POST">
 
             <div class="form-group">
-                <p>Tema previo: <?php echo $tema; ?></p>
-            <input name="tema" type="text" class="form-control" value="<?php echo $tema; ?>" placeholder="Actualizar enunciado">
-            </div>
-
-            <div class="form-group">
-                <p>Pregunta previa: <?php echo $indice; ?></p>
-                <input name="indice" type="text" class="form-control" value="<?php echo $indice; ?>" placeholder="Actualizar enunciado">
+                <p>Pregunta nº:  <?php echo $indice; ?></p>
             </div>
 
             <div class="form-group">

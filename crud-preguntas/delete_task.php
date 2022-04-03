@@ -2,7 +2,12 @@
     include("db.php");
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $query = "DELETE FROM preguntas WHERE ID_pregunta = $id ";
+        /*
+        $consulta6= "SELECT ID_tema from preguntas WHERE ID_pregunta = $id";
+        $resultado6=mysqli_query($conn,$consulta6);
+        $var=mysqli_fetch_row($resultado6);
+        */
+        $query = "DELETE FROM preguntas WHERE ID_pregunta = $id";
         $resultado = mysqli_query($conn, $query);
         if (!$resultado){
             die("Query failed");
