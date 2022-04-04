@@ -26,7 +26,7 @@
 
         //Añadir
         $sqlAnnadir = "INSERT INTO profesor_asignatura (ID_asignatura, ID_profesor) VALUES ('$idAsig', '$idPro')";
-        $sqlComprobar = "SELECT ID_asignatura, ID_profesor FROM profesor_asignatura WHERE ID_asignatura = $idAsig AND ID_profesor = $idPro";
+        $sqlComprobar = "SELECT ID_asignatura, ID_profesor FROM profesor_asignatura WHERE ID_asignatura = '$idAsig' AND ID_profesor = '$idPro'";
         $queryComprobar = mysqli_query($conn, $sqlComprobar);
 
         if(mysqli_num_rows($queryComprobar) >= 1)
