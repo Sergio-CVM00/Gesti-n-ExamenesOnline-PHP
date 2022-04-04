@@ -43,7 +43,7 @@
         <a href = "matricularAlumno.php">- Matricular estudiante en asignatura</a>
         </dd>
         <dd>
-        <a href = "bajaAsig.php">- Eliminar asignatura</a>
+        <a href = "matricularProfesor.php">- Asignar asignatura a un profesor</a>
         </dd>
     </dl>
     <a href = "../Login/login.php"><input type = "button" value = "Cerrar sesion"></a>
