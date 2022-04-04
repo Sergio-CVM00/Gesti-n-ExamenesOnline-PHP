@@ -69,13 +69,26 @@
 
             //Query
             $sql = "INSERT INTO estudiante (ID_estudiante, nombre, DNI, email, pass) VALUES ('', '$nombre', '$dni', '$email', '$pass')";
-            $query = mysqli_query($conn, $sql) or die ("Error: No se pudo realizar el registro");
+            $sqlComprobar = "SELECT email FROM estudiante WHERE email = '$email'";
+            $queryComprobar = mysqli_query($conn, $sqlComprobar);
 
-            //Cerrar conexion con la BD
-            mysqli_close($conn);
+            if(mysqli_num_rows($queryComprobar) >= 1)
+            {
+                echo '<br>';
+                echo 'Error:';
+                echo '<br>';
+                echo 'Ya existe un alumno con credenciales iguales';
+            }
+            else
+            {
+                $query = mysqli_query($conn, $sql) or die ("Error: No se pudo realizar el registro");
 
-            //Confirmacion
-            header("Location: confirmRegistro.php");
+                //Cerrar conexion con la BD
+                mysqli_close($conn);
+
+                //Confirmacion
+                header("Location: confirmRegistro.php");
+            }            
         }
     }
 ?>

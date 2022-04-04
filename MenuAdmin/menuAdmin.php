@@ -45,6 +45,7 @@
         <dd>
         <a href = "matricularProfesor.php">- Asignar asignatura a un profesor</a>
         </dd>
+        <br>
     </dl>
     <a href = "../Login/login.php"><input type = "button" value = "Cerrar sesion"></a>
 </body>
