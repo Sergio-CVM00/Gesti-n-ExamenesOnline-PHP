@@ -32,9 +32,6 @@
         <dd>
         <a href = "altaAsig.php">- Añadir asignatura</a>
         </dd>
-        <dd>
-        <a href = "bajaAsig.php">- Eliminar asignatura</a>  
-        </dd>
         <br>
 
         <dt>Usuario - Asignatura</dt>

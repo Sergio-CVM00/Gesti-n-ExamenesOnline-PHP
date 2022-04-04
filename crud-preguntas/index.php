@@ -22,8 +22,21 @@
                             <form action="save_task.php" method="POST"> 
 
                                 <div class="form-group">
-                                    <input type="text" name="tema" class="form-control"
-                                    placeholder= "Nº Tema" autofocus>
+                                    <label for = "tema">Tema:</label>
+                                    <br>
+                                    <select id = "tema" name = "tema">
+                                        <?php
+                                        //$consulta_temas= "SELECT ID_tema from tema WHERE ID_asignatura=$id_Asignatura";
+                                        $consulta_temas= "SELECT ID_tema, nombre from tema WHERE ID_asignatura=$id_Asignatura";
+                                        $temaHeader = mysqli_query($conn,$consulta_temas);
+                                            while($tema_Asignatura = mysqli_fetch_row($temaHeader))
+                                            {
+                                                echo "<option value = $tema_Asignatura[0]>";
+                                                echo $tema_Asignatura[0]." - ".$tema_Asignatura[1];
+                                                echo '</option>';
+                                            }
+                                        ?>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
@@ -61,9 +74,14 @@
                                 <?php
                                 
                                 //$query = "SELECT * FROM preguntas";
-                                $query = "SELECT preguntas.ID_tema AS 'ID_tema' , preguntas.ID_pregunta AS 'ID_pregunta' , preguntas.pregunta as 'pregunta', preguntas.solucion as 'solucion', preguntas.fecha_creacion as 'fecha_creacion'
-                                FROM preguntas,tema
-                                WHERE preguntas.ID_tema = tema.ID_tema AND tema.ID_asignatura = $id_Asignatura";
+                                $query = "SELECT preguntas.ID_tema AS 'ID_tema', 
+                                        preguntas.ID_pregunta AS 'ID_pregunta', 
+                                        preguntas.pregunta as 'pregunta', 
+                                        preguntas.solucion as 'solucion', 
+                                        preguntas.fecha_creacion as 'fecha_creacion'
+
+                                        FROM preguntas, tema
+                                        WHERE preguntas.ID_tema = tema.ID_tema AND tema.ID_asignatura = '$id_Asignatura'";
 
                                 $result_preguntas = mysqli_query($conn, $query);
 

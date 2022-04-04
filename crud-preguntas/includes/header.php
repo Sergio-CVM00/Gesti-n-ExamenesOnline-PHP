@@ -35,7 +35,7 @@
             <a class="nav-link text-white"> Temas disponibles: <?php while( $tema_Asignatura = mysqli_fetch_row($temaHeader) ){echo $tema_Asignatura[0].': '.$tema_Asignatura[1].', ';}  ?> </a>
             <li class="nav-item">
                 <a class="nav-link text-white" href ="../Login/indexPro.php?id=<?php echo $id_Asignatura;?>" >Volver al menu</a>
-            </li
+            </li>
         </div>
         
     </nav>
