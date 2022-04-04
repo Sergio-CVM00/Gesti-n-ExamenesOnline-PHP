@@ -79,7 +79,7 @@
                 for($i = 0; $i < $nFilasPro; $i++)
                 {
                     $resultadoPro = mysqli_fetch_array($queryPro);
-                    echo "<option value = $resultadoPro[ID_profresor]>";
+                    echo "<option value = $resultadoPro[ID_profesor]>";
                     echo $resultadoPro['ID_profesor']." - ".$resultadoPro['PROFESOR_NOMBRE'];
                     echo '</option>';
                 }
