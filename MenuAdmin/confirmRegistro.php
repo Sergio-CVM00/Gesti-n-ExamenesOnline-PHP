@@ -1,3 +1,3 @@
-<h1>Usuario registrado con exito</h1>
+<h1>Registrado con exito</h1>
 <br>
-<a href = "menuAdmin.php">Volver</a>
+<a href = "menuAdmin.php"><input type = "button" value = "Volver"></a>

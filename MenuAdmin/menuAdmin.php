@@ -25,6 +25,10 @@
         <li>
         <a href = "bajaPro.php">Dar de baja a un profesor</a>  
         </li>
+
+        <li>
+        <a href = "annadirAsig.php">Añadir asignatura</a>  
+        </li>
     </ul>
     <a href = "../Login/login.php"><input type = "button" value = "Cerrar sesion"></a>
 </body>
