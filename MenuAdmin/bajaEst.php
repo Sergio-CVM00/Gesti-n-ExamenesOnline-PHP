@@ -22,7 +22,7 @@
             $sqlDel = "DELETE FROM estudiante WHERE ID_estudiante = $id_Est";
             $queryDel = mysqli_query($conn, $sqlDel);
             mysqli_close($conn);
-            header("Location: bajaEst.php");
+            header("Location: confirmBaja.php");
         }
     }
 ?>
