@@ -45,7 +45,6 @@
             $queryAnnadir = mysqli_query($conn, $sqlAnnadir) or die("Error: no se pudo añadir la asignatura");
 
             mysqli_close($conn);
-
             header("Location: confirmRegistro.php");
         }
     }
@@ -63,7 +62,7 @@
 	<h1>Añadir asignatura</h1>
     <h4>Rellene los campos para crear una nueva asignatura</h4>
 
-    <form action = "" name = "asig" method = "post">
+    <form action = "" name = "asig" method = "post">    
         <label for = "nombreAsig">Nombre de la Asignatura:</label>
         <br>
         <input type = "text" placeholder = "Introduce el nombre" name = "nombreAsig">
@@ -71,7 +70,7 @@
         <br>
         <label for = "grado">Seleccione el grado:</label>
         <br>
-        <select id = "grado" name = "grado" form = "asig">
+        <select id = "grado" name = "grado">
             <?php
                 for($i = 0; $i < $nFilasGrados; $i++)
                 {
@@ -86,7 +85,7 @@
         <br>
         <label for = "coord">Seleccione el coordinador:</label>
         <br>
-        <select id = "coord" name = "coord" form = "asig">
+        <select id = "coord" name = "coord">
             <?php
                 for($i = 0; $i < $nFilasPro; $i++)
                 {
@@ -101,6 +100,7 @@
         <br>
         <input type = "submit" name = "annadir" value = "Añadir asignatura">
     </form>
+    
     <br>
     <br>
     <a href = "menuAdmin.php"><input type = "button" value = "Volver"></a>

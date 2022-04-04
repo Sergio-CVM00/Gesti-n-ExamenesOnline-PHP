@@ -9,27 +9,34 @@
 <body>
 	<h1>Menu del Administrador</h1>
     <h4>Opciones de Administrador</h4>
-    <ul>
-        <li>
-        <a href = "altaEst.php">Dar de alta a un estudiante</a>
-        </li>
+    <dl>
+        <dt>Estudiantes</dt>
+        <dd>
+        <a href = "altaEst.php">- Dar de alta a un estudiante</a>
+        </dd>
+        <dd>
+        <a href = "bajaEst.php">- Dar de baja a un estudiante</a>
+        </dd>
+        <br>
 
-        <li>
-        <a href = "bajaEst.php">Dar de baja a un estudiante</a>            
-        </li>
+        <dt>Profesores</dt>
+        <dd>
+        <a href = "altaPro.php">- Dar de alta a un profesor</a>
+        </dd>
+        <dd>
+        <a href = "bajaPro.php">- Dar de baja a un profesor</a>
+        </dd>
+        <br>
 
-        <li>
-        <a href = "altaPro.php">Dar de alta a un profesor</a> 
-        </li>
-
-        <li>
-        <a href = "bajaPro.php">Dar de baja a un profesor</a>  
-        </li>
-
-        <li>
-        <a href = "annadirAsig.php">Añadir asignatura</a>  
-        </li>
-    </ul>
+        <dt>Asignaturas</dt>
+        <dd>
+        <a href = "altaAsig.php">- Añadir asignatura</a>
+        </dd>
+        <dd>
+        <a href = "bajaAsig.php">- Eliminar asignatura</a>  
+        </dd>
+        <br>
+    </dl>
     <a href = "../Login/login.php"><input type = "button" value = "Cerrar sesion"></a>
 </body>
 </html>
