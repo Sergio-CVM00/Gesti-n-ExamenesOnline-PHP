@@ -36,6 +36,15 @@
         <a href = "bajaAsig.php">- Eliminar asignatura</a>  
         </dd>
         <br>
+
+        <dt>Usuario - Asignatura</dt>
+        <dd>
+        <dd>
+        <a href = "matricularAlumno.php">- Matricular estudiante en asignatura</a>
+        </dd>
+        <dd>
+        <a href = "bajaAsig.php">- Eliminar asignatura</a>
+        </dd>
     </dl>
     <a href = "../Login/login.php"><input type = "button" value = "Cerrar sesion"></a>
 </body>
